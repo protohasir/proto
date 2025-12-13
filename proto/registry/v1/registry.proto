@@ -57,6 +57,14 @@ message GetRepositoryRequest {
   string id = 1 [(buf.validate.field).required = true];
 }
 
+message GetOrganizationIdRequest {
+  string repository_id = 1 [(buf.validate.field).required = true];
+}
+
+message GetOrganizationIdResponse {
+  string id = 1;
+}
+
 message UpdateSdkPreferencesRequest {
   string id = 1 [(buf.validate.field).required = true];
   repeated SdkPreference sdk_preferences = 2 [
@@ -130,6 +138,7 @@ service RegistryService {
   rpc DeleteRepository(DeleteRepositoryRequest) returns (google.protobuf.Empty);
   rpc UpdateRepository(UpdateRepositoryRequest) returns (google.protobuf.Empty);
   rpc GetRepository(GetRepositoryRequest) returns (Repository);
+  rpc GetOrganizationId(GetOrganizationIdRequest) returns (GetOrganizationIdResponse);
   rpc GetCommits(GetCommitsRequest) returns (GetCommitsResponse);
   rpc GetFileTree(GetFileTreeRequest) returns (GetFileTreeResponse);
   rpc GetFilePreview(GetFilePreviewRequest) returns (GetFilePreviewResponse);
